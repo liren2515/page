@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+<title>DrapeNet | Ren Li</title>
+<meta name="generator" content="Jekyll v3.9.2">
+<meta property="og:title" content="DrapeNet">
+<meta property="og:locale" content="en_US">
+<meta name="description" content="DrapeNet: Garment Generation and Self-Supervised Draping">
+<meta property="og:description" content="DrapeNet: Garment Generation and Self-Supervised Draping">
+<meta property="og:site_name" content="DrapeNet | Ren Li">
+<meta property="og:type" content="website">
+<meta name="twitter:card" content="summary">
+<meta property="twitter:title" content="DrapeNet">
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"WebPage","description":"DrapeNet: Garment Generation and Self-Supervised Draping","headline":"DrapeNet"}</script>
+
+<link rel="stylesheet" href="drapenet_files/main.css">
+<link rel="stylesheet" href="drapenet_files/dig.css">
+<link rel="stylesheet" href="drapenet_files/academicons.min.css">
+
+</head>
+
+  <body>
+
+    <main class="page-content" aria-label="Content">
+      <div class="wrapper">
+        <h1 style="text-align: center;">DrapeNet: Garment Generation and Self-Supervised Draping</h1>
+
+<h2 style="text-align: center;">
+    <a class="page-link" href="https://scholar.google.com/citations?user=PpHLOpQAAAAJ&hl=en">Luca De Luigi</a><sup>2</sup>,
+    <a class="page-link" href="https://liren2515.github.io/page/">Ren Li</a><sup>1</sup>,
+    <a class="page-link" href="https://bguillard.github.io/">Benoit Guillard</a><sup>1</sup>,
+    <a class="page-link" href="https://people.epfl.ch/mathieu.salzmann?lang=en">Mathieu Salzmann</a><sup>1</sup>,
+    <a class="page-link" href="https://people.epfl.ch/pascal.fua?lang=en">Pascal Fua</a><sup>1</sup>
+</h2>
+
+<h3 style="text-align: center;"> 
+  <div class="centered_div big">
+    <sup>1</sup> CvLab, EPFL &emsp; <sup>2</sup> University of Bologna
+  </div>
+</h3>
+
+<div class="centered_div big">
+    <div class="div_sidebyside"><img src="drapenet_files/epfl_logo.png"></div>
+    <div class="div_sidebyside">
+    	<a class="page-link" href="https://www.epfl.ch/labs/cvlab/">
+    	<img src="drapenet_files/cvlab_logo.png"></a></div>
+</div>
+
+<div class="centered_div big" style="padding-bottom:20px;">
+    <div class="div_rounded_corners"><a href="https://arxiv.org/abs/2211.11277" style="color: #fdfdfd;">
+        <i class="ai ai-arxiv"></i> Paper
+    </a></div>
+    <div class="div_rounded_corners"><p style="color: #fdfdfd;"><object data="drapenet_files/github_logo.svg"></object>
+        <a href="https://github.com/liren2515/DrapeNet" style="color: #fdfdfd;">Code</a>
+    </p></div>
+</div>
+
+<!-- Video will go here 
+<div class="centered_div big">
+ <iframe width="800" height="450" src="https://www.youtube.com/embed/TVMwnazd9lQ" frameborder="0"></iframe> 
+</div>-->
+
+<div class="div_text">
+	<h1 style="text-align: center;">Abstract</h1>
+  Recent approaches to drape garments quickly over arbitrary human bodies leverage self-supervision to eliminate the need for large training sets. However, they are designed to train one network per clothing item, which severely limits their generalization abilities. In our work, we rely on self-supervision to train a single network to drape multiple garments. This is achieved by predicting a 3D deformation field conditioned on the latent codes of a generative network, which models garments as unsigned distance fields.
+
+  Our pipeline can generate and drape previously unseen garments of any topology, whose shape can be edited by manipulating their latent codes. Being fully differentiable, our formulation makes it possible to recover accurate 3D models of garments from partial observations -- images or 3D scans -- via gradient descent.
+</div>
+
+<hr class="hr_style">
+
+
+<div class="div_text div_gray">
+  <h3> Approach </h3>
+  <div style="width: 100%; display:block; margin:auto; padding-bottom:2px;"><img style="margin:5px; border-radius:10px;" src="drapenet_files/framework.png" /></div>
+  <div style="width: 100%; display:inline-block;">
+    Our approach consists of a garment generative network (left) and a garment draping network (right). The generative network is trained to embed garments into compact latent codes and predict their unsigned distance field (UDF) from such vectors. UDFs are then meshed using [<i>MeshUDF</i>]. The garment draping network, conditioned on the latent codes of the generative network, is trained in a self-supervised way to predict the displacements <b>∆x</b> and <b>∆x<sub>ref</sub></b> to be applied to the vertices of given garments, before skinning them according to the target body. It includes an Intersection Solver module to prevent intersection between top and bottom garments.
+  </div>
+</div>
+
+<div class="div_text div_gray">
+  <div class="div_aligned">
+    <div style="width: 42%; display:inline-block;"> 
+      <h3 style="text-align: left;"> Garment Draping </h3>
+      New garments can be sampled from the latent spaces of the generative networks, and deformed by the draping networks to fit to a given body.
+    </div>
+    <div style="width: 55%; display:inline-block; vertical-align:middle; margin-left:3%;"><img style="margin:5px; width:100%;border-radius:10px;" src="drapenet_files/drape.png" /> 
+    </div> 
+  </div>
+</div>
+
+
+<div class="div_text div_gray">
+  <h3> Garment Editing </h3>
+  <div style="width: 100%; display:block; margin:auto; padding-bottom:2px;"><img style="margin:5px; border-radius:10px;" src="drapenet_files/editing.png" /></div>
+  <div style="width: 100%; display:inline-block;">
+    We can edit a specific garment feature while leaving other aspects of the garment geometry unchanged by manipulating the latent code learned by the generative networks.
+  </div>
+</div>
+
+<div class="div_text div_gray">
+  <div class="div_aligned">
+    <div style="width: 42%; display:inline-block;"> 
+      <h3 style="text-align: left;"> Garment Recovery </h3>
+      Being a differentiable parametric model, our framework can reconstruct 3D garments by fitting observations such as images or 3D scans.
+    </div>
+    <div style="width: 55%; display:inline-block; vertical-align:middle; margin-left:3%;"><img style="margin:5px; width:100%;border-radius:10px;" src="drapenet_files/recover.png" /> 
+    </div> 
+  </div>
+</div>
+
+<h2> BibTeX </h2>
+If you find our work useful, please cite it as:
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>@inproceedings{de2023drapenet,
+  author = {De Luigi, Luca and Li, Ren and Guillard, Benoit and Salzmann, Mathieu and Fua, Pascal},
+  title = {{DrapeNet: Garment Generation and Self-Supervised Draping}},
+  booktitle = {Proceedings of the IEEE/CVF Conference on Computer Vision and Pattern Recognition},
+  year = {2023}
+}
+</code></pre></div></div>
+
+
+<hr class="hr_style_thin">
+
+<h3> References </h3>
+<div class="div_refs">
+  <div class="div_aligned_top">
+    <div style="width: 12%; display:inline-block; text-align:right; margin-right:1%;">[<i>MeshUDF</i>]</div>
+    <div style="width: 87%; display:inline-block;">B. Guillard, F. Stella, P. Fua. Meshudf: Fast and differentiable meshing of unsigned distance field networks. In <i> Computer Vision–ECCV</i>, 2022.</div>
+  </div>
+</div>
+
+
+</div></main></body></html>
