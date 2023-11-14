@@ -18,17 +18,17 @@ description: ISP Multi-Layered Garment Draping with Implicit Sewing Patterns
 
 
 <div class="centered_div big">
-    <div class="div_sidebyside"><img src="/projects/meshudf/images/epfl_logo.png"></div>
+    <div class="div_sidebyside"><img src="images/epfl_logo.png"></div>
     <div class="div_sidebyside">
     	<a class="page-link" href="https://www.epfl.ch/labs/cvlab/">
-    		<img src="/projects/meshudf/images/cvlab_logo.png"></a></div>
+    		<img src="images/cvlab_logo.png"></a></div>
 </div>
 
 <div class="centered_div big" style="padding-bottom:20px;">
     <div class="div_rounded_corners"><a href="https://arxiv.org/abs/2305.14100" style="color: #fdfdfd;">
         <i class="ai ai-arxiv"></i> Paper
     </a></div>
-    <div class="div_rounded_corners"><p style="color: #fdfdfd;"><object data="/assets/github_logo.svg"></object>
+    <div class="div_rounded_corners"><p style="color: #fdfdfd;"><object data="images/github_logo.svg"></object>
         <a href="https://github.com/liren2515/ISP" style="color: #fdfdfd;">Code</a>
     </p></div>
 </div>
@@ -57,12 +57,12 @@ description: ISP Multi-Layered Garment Draping with Implicit Sewing Patterns
 <td>
 	<div class="auto-resizable-mv" >
   	<div style="padding-bottom: 100%;">
-  		<model-viewer camera-orbit="0deg 0deg 1m" alt="MeshUDF" src="/projects/isp/meshes/udf.glb" shadow-intensity="1" poster="/projects/isp/meshes/udf.png"  orientation="0deg -30deg 0deg" camera-controls touch-action="pan-y"></model-viewer></div></div>
+  		<model-viewer camera-orbit="0deg 0deg 1m" alt="MeshUDF" src="meshes/udf.glb" shadow-intensity="1" poster="meshes/udf.png"  orientation="0deg -30deg 0deg" camera-controls touch-action="pan-y"></model-viewer></div></div>
 </td>
 <td>
 	<div class="auto-resizable-mv" >
   	<div style="padding-bottom: 100%;">
-  		<model-viewer camera-orbit="0deg 0deg 1m" interpolation-decay="0" alt="ISP" src="/projects/isp/meshes/isp.glb" shadow-intensity="1" poster="/projects/isp/meshes/isp.png"  orientation="0deg -30deg 0deg"  camera-controls touch-action="pan-y"></model-viewer>
+  		<model-viewer camera-orbit="0deg 0deg 1m" interpolation-decay="0" alt="ISP" src="meshes/isp.glb" shadow-intensity="1" poster="meshes/isp.png"  orientation="0deg -30deg 0deg"  camera-controls touch-action="pan-y"></model-viewer>
   	</div></div>
 </td>
 </tr>
@@ -87,21 +87,21 @@ description: ISP Multi-Layered Garment Draping with Implicit Sewing Patterns
 <div class="div_text div_gray">
 	<h3> Approach </h3>
   <div class="div_aligned">
-    <div class="split_img_if_possible right" ><img style="margin:5px; width:100%;border-radius:10px;" src="/projects/isp/images/patterns.png" /> 
+    <div class="split_img_if_possible right" ><img style="margin:5px; width:100%;border-radius:10px;" src="images/patterns.png" /> 
     </div>
     <div class="split_text_if_possible" style="width: 100%;" >
       We represent 3D digital garments as flat sewing patterns that are deformed and stitched together. For example, this shirt is naturally decomposed into a front and a back panel, shown in grey and purple. When flattened, each panel has a distinct shape, and the numbers indicate which edges align and need to be stitched together.
     </div>
   </div>
   To learn a latent space of such representations, we use two neural networks. The first one parametrizes the sewing patterns as 2D SDFs with labels for the edges. The second one lifts the flat panels to 3D with a continuous uv deformation, in the manner of AtlasNet [AN]. This results in one 3D mesh for each panel, which are then stitched together.
-  <div style="width: 100%; display:block; margin:auto; padding-bottom:2px;"><img style="margin:5px; border-radius:10px;" src="/projects/isp/images/networks.png" /></div>
+  <div style="width: 100%; display:block; margin:auto; padding-bottom:2px;"><img style="margin:5px; border-radius:10px;" src="images/networks.png" /></div>
 </div>
 
 
 <div class="div_text div_gray">
 	<h3> Draping </h3> 
   In order to fit garments onto different body poses and shapes, we adopt techniques from both <a href="https://liren2515.github.io/page/drapenet/drapenet.html">DrapeNet</a> and <a href="http://mslab.es/projects/SNUG/">SNUG</a>. We train a deformation network using a self-supervised approach. What sets our method apart is a new parameterization that allows us to extend the draping process across multiple layers. We base our reasoning on the UV-maps of each panel to easily detect intersections. When found, these intersections can be corrected using another neural network, specifically a 2D CNN. This results in an iterative process where garments are draped sequentially according to their natural order.
-  <div style="width: 100%; display:block; margin:auto; padding-bottom:2px;"><img style="margin:5px; border-radius:10px;" src="/projects/isp/images/drapings.jpg" /></div>
+  <div style="width: 100%; display:block; margin:auto; padding-bottom:2px;"><img style="margin:5px; border-radius:10px;" src="images/drapings.jpg" /></div>
 </div>
 
 
@@ -111,11 +111,11 @@ description: ISP Multi-Layered Garment Draping with Implicit Sewing Patterns
   <div class="split_text_if_possible" >
     By working within the UV space of our garment parameterization, we can easily make modifications. For instance, sketching on a single pattern results in a textured 3D garment. This texture can also be transferred to additional garments by simply changing the latent codes. Textured patterns can also be used to create new garment visuals.
   </div>
-  <div class="split_img_if_possible left"><img style="margin:5px; border-radius:10px;" src="/projects/isp/images/sketching.jpg" /></div>
+  <div class="split_img_if_possible left"><img style="margin:5px; border-radius:10px;" src="images/sketching.jpg" /></div>
   </div>
 
   <div class="div_aligned">
-    <div class="split_img_if_possible right" ><img style="margin:5px; width:100%;border-radius:10px;" src="/projects/isp/images/modify_panels.jpg" /> 
+    <div class="split_img_if_possible right" ><img style="margin:5px; width:100%;border-radius:10px;" src="images/modify_panels.jpg" /> 
     </div>
     <div class="split_text_if_possible" style="width: 100%;" >
       We can also easily manipulate the garment 3D shape by editing the panels. Our sewing pattern representation makes it easy to specify new edges by drawing and erasing lines in the 2D panel images, by simply optimizing a 2D Chamfer distance.
