@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Garment Recovery | Ren Li</title>
+<meta name="generator" content="Jekyll v3.9.2">
+<meta property="og:title" content="Garment Recovery">
+<meta property="og:locale" content="en_US">
+<meta name="description" content="Garment Recovery with Shape and Deformation Priors">
+<meta property="og:description" content="Garment Recovery with Shape and Deformation Priors">
+<meta property="og:site_name" content="Garment Recovery | Ren Li">
+<meta property="og:type" content="website">
+<meta name="twitter:card" content="summary">
+<meta property="twitter:title" content="Garment Recovery">
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"WebPage","description":"Garment Recovery with Shape and Deformation Priors","headline":"Garment Recovery"}</script>
+
+<link rel="stylesheet" href="images/main.css">
+<link rel="stylesheet" href="images/dig.css">
+<link rel="stylesheet" href="images/academicons.min.css">
+
+</head>
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    tex2jax: {
+      inlineMath: [ ['$','$'], ["\\(","\\)"] ],
+      processEscapes: true
+    }
+  });
+</script>
+<script type="text/javascript"
+        src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+<script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+<script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+
+  <body>
+
+    <main class="page-content" aria-label="Content">
+      <div class="wrapper">
+        <h1 style="text-align: center;">Garment Recovery with Shape and Deformation Priors</h1>
+
+<h2 style="text-align: center;">
+    <a class="page-link" href="https://liren2515.github.io/page/">Ren Li</a>,
+    <a class="page-link" href="https://corentindumery.github.io/">Corentin Dumery</a>,
+    <a class="page-link" href="https://bguillard.github.io/">Benoit Guillard</a>,
+    <a class="page-link" href="https://people.epfl.ch/pascal.fua?lang=en">Pascal Fua</a>
+</h2>
+
+
+<div class="centered_div big">
+    <div class="div_sidebyside"><img src="images/epfl_logo.png"></div>
+    <div class="div_sidebyside">
+    	<a class="page-link" href="https://www.epfl.ch/labs/cvlab/">
+    	<img src="images/cvlab_logo.png"></a></div>
+</div>
+
+<div class="centered_div big" style="padding-bottom:20px;">
+    <div class="div_rounded_corners"><a href="https://arxiv.org/abs/2311.10356" style="color: #fdfdfd;">
+        <i class="ai ai-arxiv"></i> Paper
+    </a></div>
+    <div class="div_rounded_corners"><p style="color: #fdfdfd;"><object data="images/github_logo.svg"></object>
+        <a href="https://liren2515.github.io/page/prior/prior.html" style="color: #fdfdfd;">Code</a>
+    </p></div>
+</div>
+
+<!--
+<div class="centered_div big">
+  <iframe width="700" height="450" src="https://www.youtube.com/embed/vmBITSFNHD0" frameborder="0"></iframe> 
+</div>
+-->
+
+<div class="div_text">
+	<h1 style="text-align: center;">Abstract</h1>
+  While modeling people wearing tight-fitting clothing has made great strides in recent years, loose-fitting clothing remains a challenge. We propose a method that delivers realistic garment models from real-world images, regardless of garment shape or deformation. To this end, we introduce a fitting approach that utilizes shape and deformation priors learned from synthetic data to accurately capture garment shapes and deformations, including large ones. Not only does our approach recover the garment geometry accurately, it also yields models that can be directly used by downstream applications such as animation and simulation.
+</div>
+
+<hr class="hr_style">
+
+<div class="div_text">
+  <div style="width: 100%; display:block; margin:auto; padding-bottom:2px;"><img style="margin:5px; border-radius:10px;" src="images/overview.png" /></div>
+  <div style="width: 100%; display:inline-block;">
+    We propose a fitting method that leverages shape and deformation priors trained on synthetic data to recover realistic 3D garment mesh from in-the-wild images. We produce triangulated meshes that are directly usable for animation and simulation.
+  </div>
+</div>
+
+<div class="div_text">
+  <h2> <b>Recovering from in-the-wild images</b></h2>
+  <div style="width: 100%; display:block; margin:auto; padding-bottom:2px;"><img style="margin:5px; border-radius:10px;" src="images/fitting.png" /></div>
+  <div style="width: 100%; display:inline-block;">
+    Our method can produce realistic 3D meshes with fine details across a wide range of garment types, from tight-fitting attire to more relaxed and flowing outfits.
+  </div>
+</div>
+
+<div class="div_text">
+  <h2> <b>Approach</b></h2>
+  <div style="width: 100%; display:block; margin:auto; padding-bottom:2px;"><img style="margin:5px; border-radius:10px;" src="images/framework.png" /></div>
+  <div style="width: 100%; display:inline-block;">
+    Given an image of a clothed person, (1) we first estimate the normal map of the target garment and the SMPL body parameters $(\beta,\theta)$, which are used to compute the body part segmentation and position maps. (2) The maximum coverage garment shape $\bar{\mathcal{M}}$ is then skinned to closely fit to the body, yielding $\mathcal{M}$. Leveraging (3) pixel-aligned image features, our deformation model (4) predicts occupancy and position maps to correct M for large deformations. (5) The 3D garment mesh is recovered using <i>ISP</i> and further refined.
+  </div>
+</div>
+
+
+
+<h2> BibTeX </h2>
+If you find our work useful, please cite it as:
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>@inproceedings{li2024garment,
+  author = {Li, Ren and Dumery, Corentin and Guillard, Benoit and Fua, Pascal},
+  title = {{Garment Recovery with Shape and Deformation Priors}},
+  booktitle = {Proceedings of the IEEE/CVF Conference on Computer Vision and Pattern Recognition},
+  year = {2024}
+}
+</code></pre></div></div>
+
+
+<hr class="hr_style_thin">
+<h3> References </h3>
+<div class="div_refs">
+  <div class="div_aligned_top">
+    <div style="width: 12%; display:inline-block; text-align:right; margin-right:1%;">[<i>ISP</i>]</div>
+    <div style="width: 87%; display:inline-block;">R. Li, B. Guillard, P. Fua. ISP: Multi-Layered Garment Draping with Implicit Sewing Patterns. In <i> NeurIPS</i>, 2023.</div>
+  </div>
+</div>
+
+</div></main></body></html>
