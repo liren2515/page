@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Garment Recovery | Ren Li</title>
+<meta name="generator" content="Jekyll v3.9.2">
+<meta property="og:title" content="Garment Recovery">
+<meta property="og:locale" content="en_US">
+<meta name="description" content="Reconstruction of Manipulated Garment with Guided Deformation Prior">
+<meta property="og:description" content="Reconstruction of Manipulated Garment with Guided Deformation Prior">
+<meta property="og:site_name" content="Garment Recovery | Ren Li">
+<meta property="og:type" content="website">
+<meta name="twitter:card" content="summary">
+<meta property="twitter:title" content="Garment Recovery">
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"WebPage","description":"Reconstruction of Manipulated Garment with Guided Deformation Prior","headline":"Garment Folding"}</script>
+
+<link rel="stylesheet" href="images/main.css">
+<link rel="stylesheet" href="images/dig.css">
+<link rel="stylesheet" href="images/academicons.min.css">
+
+</head>
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    tex2jax: {
+      inlineMath: [ ['$','$'], ["\\(","\\)"] ],
+      processEscapes: true
+    }
+  });
+</script>
+<script type="text/javascript"
+        src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+<script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+<script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+
+  <body>
+
+    <main class="page-content" aria-label="Content">
+      <div class="wrapper">
+        <h1 style="text-align: center;">Reconstruction of Manipulated Garment with Guided Deformation Prior</h1>
+
+<h2 style="text-align: center;">
+    <a class="page-link" href="https://liren2515.github.io/page/">Ren Li</a>,
+    <a class="page-link" href="https://corentindumery.github.io/">Corentin Dumery</a>,
+    <a class="page-link" href="https://people.epfl.ch/zhantao.deng?lang=en">Zhantao Deng</a>,
+    <a class="page-link" href="https://people.epfl.ch/pascal.fua?lang=en">Pascal Fua</a>
+</h2>
+
+<style>
+  .video-container {
+      display: flex;
+      justify-content: center;
+  }
+  video {
+      max-width: 100%;
+      height: auto;
+  }
+</style>
+
+<div class="centered_div big">
+    <div class="div_sidebyside"><img src="images/epfl_logo.png"></div>
+    <div class="div_sidebyside">
+    	<a class="page-link" href="https://www.epfl.ch/labs/cvlab/">
+    	<img src="images/cvlab_logo.png"></a></div>
+</div>
+
+<div class="centered_div big" style="padding-bottom:20px;">
+    <div class="div_rounded_corners"><a href="https://arxiv.org/abs/2405.10934" style="color: #fdfdfd;">
+        <i class="ai ai-arxiv"></i> Paper
+    </a></div>
+    <div class="div_rounded_corners"><p style="color: #fdfdfd;"><object data="images/github_logo.svg"></object>
+        <a href="https://github.com/liren2515/GarmentFolding" style="color: #fdfdfd;">Code</a>
+    </p></div>
+</div>
+
+<!--
+<div class="centered_div big">
+  <iframe width="700" height="450" src="https://www.youtube.com/embed/vmBITSFNHD0" frameborder="0"></iframe> 
+</div>
+-->
+
+<div class="div_text">
+	<h1 style="text-align: center;">Abstract</h1>
+  Modeling the shape of garments has received much attention, but most existing approaches assume the garments to be worn by someone, which constrains the range of shapes they can assume. In this work, we address shape recovery when garments are being manipulated instead of worn, which gives rise to an even larger range of possible shapes. To this end, we leverage the implicit sewing patterns (ISP) model for garment modeling and extend it by adding a diffusion-based deformation prior to represent these shapes. To recover 3D garment shapes from incomplete 3D point clouds acquired when the garment is folded, we map the points to UV space, in which our priors are learned, to produce partial UV maps, and then fit the priors to recover complete UV maps and 2D to 3D mappings. Experimental results demonstrate the superior reconstruction accuracy of our method compared to previous ones, especially when dealing with large non-rigid deformations arising from the manipulations.
+
+  <div style="width: 100%; display:block; margin:auto; padding-bottom:2px;"><img style="margin:5px; border-radius:10px;" src="images/fold.gif" /></div>
+</div>
+
+<hr class="hr_style">
+
+
+<div class="div_text">
+  <h2> <b>Approach</b></h2>
+  <div style="width: 100%; display:block; margin:auto; padding-bottom:2px;"><img style="margin:5px; border-radius:10px;" src="images/pipeline.png" /></div>
+  <div style="width: 100%; display:inline-block;">
+    Given a point cloud, we first map it to UV space in which the deformation prior is learned, using the trained UV mapper. This mapping yields a UV map $\tilde{\mathcal{M}}$ and a panel mask $\tilde{\mathcal{O}}$ that are typically sparse due to the occlusions. We then fit <i>ISP</i> using the sparse mask to recover the 2D shape of the 2D panels. Subsequently, we take the sparse UV map $\tilde{\mathcal{M}}$ and the ISP-recovered mask $\mathcal{O}$ as manifold guidance to direct the generation process of the diffusion prior. Leveraging the mapping function of <i>ISP</i>, this process finally produces a garment mesh that aligns with the point cloud observation.
+  </div>
+</div>
+
+<div class="div_text">
+  <h2> <b>Results</b></h2>
+  <div style="width: 100%; display:block; margin:auto; padding-bottom:2px;"><img style="margin:5px; border-radius:10px;" src="images/results.png" /></div>
+  <div style="width: 100%; display:inline-block;">
+  Our method can recover garment meshes from input point clouds faithfully with correct shape and deformations.
+  </div>
+
+</div>
+
+<div class="div_text">
+  <div style="text-align: center;">
+  <video controls>
+    <source src="images/output.mp4" type="video/mp4">
+  </video>
+  Our recovered meshes can be used for animation and simulation directly.
+ </div>
+
+</div>
+
+
+<h2> BibTeX </h2>
+If you find our work useful, please cite it as:
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>@inproceedings{li2024folding,
+  author = {Li, Ren and Dumery, Corentin and Deng, Zhantao and Fua, Pascal},
+  title = {{Reconstruction of Manipulated Garment with Guided Deformation Prior}},
+  booktitle = {Advances in Neural Information Processing Systems},
+  year = {2024}
+}
+</code></pre></div></div>
+
+
+<hr class="hr_style_thin">
+<h3> References </h3>
+<div class="div_refs">
+  <div class="div_aligned_top">
+    <div style="width: 12%; display:inline-block; text-align:right; margin-right:1%;">[<i>ISP</i>]</div>
+    <div style="width: 87%; display:inline-block;">R. Li, B. Guillard, P. Fua. ISP: Multi-Layered Garment Draping with Implicit Sewing Patterns. In <i> NeurIPS</i>, 2023.</div>
+  </div>
+</div>
+
+</div></main></body></html>
