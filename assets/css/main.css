@@ -2449,6 +2449,8 @@
 
 	.work-item {
 		margin: 0 0 2em 0;
+		height: 500px; /* Set the desired height here */
+		overflow: hidden; /* Hide any content that exceeds the specified height */
 	}
 
 		.work-item .image {
