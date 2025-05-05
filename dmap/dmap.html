@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+<title>DMap | Ren Li</title>
+<meta name="generator" content="Jekyll v3.9.2">
+<meta property="og:title" content="DMap">
+<meta property="og:locale" content="en_US">
+<meta name="description" content="Single View Garment Reconstruction Using Diffusion Mapping Via Pattern Coordinates">
+<meta property="og:description" content="Single View Garment Reconstruction Using Diffusion Mapping Via Pattern Coordinates">
+<meta property="og:site_name" content="DMap | Ren Li">
+<meta property="og:type" content="website">
+<meta name="twitter:card" content="summary">
+<meta property="twitter:title" content="DMap">
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"WebPage","description":"Single View Garment Reconstruction Using Diffusion Mapping Via Pattern Coordinates","headline":"DMap"}</script>
+
+<link rel="stylesheet" href="images/main.css">
+<link rel="stylesheet" href="images/dig.css">
+<link rel="stylesheet" href="images/academicons.min.css">
+
+</head>
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    tex2jax: {
+      inlineMath: [ ['$','$'], ["\\(","\\)"] ],
+      processEscapes: true
+    }
+  });
+</script>
+<script type="text/javascript"
+        src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+<script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+<script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+
+  <body>
+
+    <main class="page-content" aria-label="Content">
+      <div class="wrapper">
+        <h1 style="text-align: center;">Single View Garment Reconstruction Using Diffusion Mapping Via Pattern Coordinates</h1>
+
+<h2 style="text-align: center;">
+    <a class="page-link" href="https://liren2515.github.io/page/">Ren Li</a><sup>1</sup>,
+    <a class="page-link" href="https://www.linkedin.com/in/cong-cao-28582722b/?trk=people-guest_people_search-card&originalSubdomain=uk">Cong Cao</a><sup>2</sup>,
+    <a class="page-link" href="https://corentindumery.github.io/">Corentin Dumery</a><sup>1</sup>,
+    <a class="page-link" href="https://kasvii.github.io/">Yingxuan You</a><sup>1</sup>,
+    <a class="page-link" href="https://www.hao-li.com/">Hao Li</a><sup>2,3</sup>,
+    <a class="page-link" href="https://people.epfl.ch/pascal.fua?lang=en">Pascal Fua</a><sup>1</sup>
+</h2>
+
+<h3 style="text-align: center;"> 
+  <div class="centered_div big">
+    <sup>1</sup> CvLab, EPFL &emsp; <sup>2</sup> MBZUAI &emsp; <sup>3</sup> Pinscreen
+  </div>
+</h3>
+
+<div class="centered_div big">
+    <div class="div_sidebyside"><img src="images/epfl_logo.png"></div>
+    <div class="div_sidebyside">
+    	<a class="page-link" href="https://www.epfl.ch/labs/cvlab/">
+    	<img src="images/cvlab_logo.png"></a></div>
+      <div class="div_sidebyside"><img src="images/mbzuai_logo.jpg"></div>
+      <div class="div_sidebyside"><img src="images/pinscreen_logo.png"></div>
+</div>
+
+<div class="centered_div big" style="padding-bottom:20px;">
+    <div class="div_rounded_corners"><a href="https://arxiv.org/abs/2504.08353" style="color: #fdfdfd;">
+        <i class="ai ai-arxiv"></i> Paper
+    </a></div>
+    <div class="div_rounded_corners"><p style="color: #fdfdfd;"><object data="images/github_logo.svg"></object>
+        <a href="https://github.com/liren2515/DMap" style="color: #fdfdfd;">Code</a>
+    </p></div>
+</div>
+
+<!--
+<div class="centered_div big">
+  <iframe width="700" height="450" src="https://www.youtube.com/embed/vmBITSFNHD0" frameborder="0"></iframe> 
+</div>
+-->
+
+<div class="div_text">
+	<h1 style="text-align: center;">Abstract</h1>
+  Reconstructing 3D clothed humans from images is fundamental to applications like virtual try-on, avatar creation, and mixed reality. While recent advances have enhanced human body recovery, accurate reconstruction of garment geometry -- especially for loose-fitting clothing -- remains an open challenge. We present a novel method for high-fidelity 3D garment reconstruction from single images that bridges 2D and 3D representations. Our approach combines Implicit Sewing Patterns (ISP) with a generative diffusion model to learn rich garment shape priors in a 2D UV space. A key innovation is our mapping model that establishes correspondences between 2D image pixels, UV pattern coordinates, and 3D geometry, enabling joint optimization of both 3D garment meshes and the corresponding 2D patterns by aligning learned priors with image observations. Despite training exclusively on synthetically simulated cloth data, our method generalizes effectively to real-world images, outperforming existing approaches on both tight- and loose-fitting garments. The reconstructed garments maintain physical plausibility while capturing fine geometric details, enabling downstream applications including garment retargeting and texture manipulation.
+</div>
+
+<hr class="hr_style">
+
+<div class="div_text">
+  <h2> <b>Garment Reconstruction</b></h2>
+  <div style="width: 100%; display:block; margin:auto; padding-bottom:2px;"><img style="margin:5px; border-radius:10px;" src="images/fitting.jpg" /></div>
+  <div style="width: 100%; display:inline-block;">
+    Our method can recover realistic 3D models for diverse garments in different shapes and deformations.
+   
+  </div>
+</div>
+
+<div class="div_text">
+  <h2> <b>Approach</b></h2>
+  <div style="width: 100%; display:block; margin:auto; padding-bottom:2px;"><img style="margin:5px; border-radius:10px;" src="images/framework.png" /></div>
+  <div style="width: 100%; display:inline-block;">
+    Given an image of a clothed person, we first estimate the front normal $\textbf{N}_F$ of the target garment, and the SMPL body model which is used to render the body part segmentation ($\textbf{S}_F$, $\textbf{S}_B$) and depth ($\textbf{D}_F^b$, $\textbf{D}_B^b$) images. The back normal $\textbf{N}_B$ of the garment is estimated subsequently by the diffusion model $\boldsymbol{\epsilon}_{\theta}^n$. We then predict the UV-coordinate ($\textbf{C}_F$, $\textbf{C}_B$) and the depth ($\textbf{D}_F^g$, $\textbf{D}_B^g$) images from the garment normal and body estimations with the mapping model $\boldsymbol{\epsilon}_{\theta}^m$. The incomplete UV positional map $\tilde{\mathcal{U}}$ is produced from them using the camera backprojection. Finally, we fit $\tilde{\mathcal{U}}$ to DISP to recover the complete UV positional map $\hat{\mathcal{U}}$ and the corresponding garment mesh $\textbf{G}$, which is further improved by the refinement.
+  </div>
+</div>
+
+
+
+<h2> BibTeX </h2>
+If you find our work useful, please cite it as:
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>@inproceedings{li2025,
+  author = {Li, Ren and Cao, Cong and Dumery, Corentin and Yingxuan, You and Li, Hao and Fua, Pascal},
+  title = {{Single View Garment Reconstruction Using Diffusion Mapping Via Pattern Coordinates}},
+  booktitle = {XXX},
+  year = {2025}
+}
+</code></pre></div></div>
+
+
+<hr class="hr_style_thin">
+<h3> References </h3>
+<div class="div_refs">
+  <div class="div_aligned_top">
+    <div style="width: 12%; display:inline-block; text-align:right; margin-right:1%;">[<i>ISP</i>]</div>
+    <div style="width: 87%; display:inline-block;">R. Li, B. Guillard, P. Fua. ISP: Multi-Layered Garment Draping with Implicit Sewing Patterns. In <i> NeurIPS</i>, 2023.</div>
+  </div>
+</div>
+
+</div></main></body></html>
