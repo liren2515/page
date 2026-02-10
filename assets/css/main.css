@@ -2488,7 +2488,7 @@
 		-ms-justify-content: space-between;
 		justify-content: space-between;
 		background-color: #1f1815;
-		background-attachment: scroll,								fixed;
+		background-attachment: fixed,								fixed;
 		background-image: url("images/overlay.png"), url("../../images/bg.jpg");
 		background-position: top left,							top left;
 		background-repeat: repeat,								no-repeat;
@@ -3133,3 +3133,18 @@
 			}
 
 	}
+
+
+body {
+  color: #555555;   /* #a2a2a2 */
+}
+
+/* 标题 */
+h1, h2, h3, h4, h5, h6 {
+  color: #333333;   /* #787878 */
+}
+
+/* 作者 / 次级信息 */
+h5, h6 {
+  color: #444444;
+}
